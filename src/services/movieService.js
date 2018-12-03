@@ -1,16 +1,16 @@
 import http from "./httpService";
-import config from "../config.json";
+import { apiUrl } from "../config.json";
 
 //get Movies
 export function getMovies() {
-  return http.get(`${config.apiUrl}/movies`);
+  return http.get(`${apiUrl}/movies`);
 }
 
 //get a Movie
 
 //delete a movie
 export function deleteMovie(movieId) {
-  return http.delete(`${config.apiUrl}/movies/${movieId}`);
+  return http.delete(`${apiUrl}/movies/${movieId}`);
 }
 
 //save a movie
