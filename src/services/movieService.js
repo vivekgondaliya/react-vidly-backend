@@ -2,28 +2,29 @@ import http from "./httpService";
 import { apiUrl } from "../config.json";
 
 const API_ENDPOINT = `${apiUrl}/movies`;
-//get Movies
+
+function movieUrl(id) {
+  return `${API_ENDPOINT}/${id}`;
+}
+
 export function getMovies() {
-  return http.get(`${API_ENDPOINT}`);
+  return http.get(API_ENDPOINT);
 }
 
-//get a Movie
 export function getMovie(movieId) {
-  return http.get(`${API_ENDPOINT}/${movieId}`);
+  return http.get(movieUrl(movieId));
 }
 
-//delete a movie
 export function deleteMovie(movieId) {
-  return http.delete(`${API_ENDPOINT}/${movieId}`);
+  return http.delete(movieUrl(movieId));
 }
 
-//save a movie
 export function saveMovie(movie) {
   //update existing movie in DB
   if (movie._id) {
     const body = { ...movie };
     delete body._id;
-    return http.put(`${API_ENDPOINT}/${movie._id}`, body);
+    return http.put(movieUrl(movie._id), body);
   }
 
   //if it's a new movie
