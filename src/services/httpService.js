@@ -3,7 +3,6 @@
  * we only have to modify changes here
  */
 import axios from "axios";
-import { toast } from "react-toastify";
 
 axios.interceptors.response.use(null, error => {
   const expectedError =
@@ -14,7 +13,6 @@ axios.interceptors.response.use(null, error => {
   if (!expectedError) {
     //log the error for DEVs
     console.log("Logging the error: ", error);
-    toast.error("An unexpected error occurred."); // can also use toast() only
   }
   return Promise.reject(error);
 });
